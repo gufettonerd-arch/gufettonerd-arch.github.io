@@ -1,0 +1,64 @@
+---
+// Giscus — commenti basati su GitHub Discussions
+// Configurazione: vedi DEPLOY.md per le istruzioni di setup
+// Valori da aggiornare dopo aver seguito i 3 passaggi su giscus.app
+
+const GISCUS_REPO        = "gufettonerd-arch/idea-parking";
+const GISCUS_REPO_ID     = "REPO_ID";                     // da giscus.app
+const GISCUS_CATEGORY    = "General";
+const GISCUS_CATEGORY_ID = "CATEGORY_ID";                 // da giscus.app
+---
+
+<section class="giscus-section">
+  <div class="giscus-header">
+    <span class="giscus-label">discussione</span>
+    <p class="giscus-intro">
+      Hai una correzione, un'integrazione o vuoi espandere questo ragionamento?
+      Commenta qui sotto — serve un account GitHub.
+    </p>
+  </div>
+
+  <script
+    src="https://giscus.app/client.js"
+    data-repo={GISCUS_REPO}
+    data-repo-id={GISCUS_REPO_ID}
+    data-category={GISCUS_CATEGORY}
+    data-category-id={GISCUS_CATEGORY_ID}
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="dark"
+    data-lang="it"
+    crossorigin="anonymous"
+    async
+  ></script>
+</section>
+
+<style>
+  .giscus-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .giscus-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .giscus-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  .giscus-intro {
+    margin-top: 0.6rem;
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+</style>

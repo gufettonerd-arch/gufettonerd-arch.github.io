@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #09090b;
+  --surface: #18181b;
+  --surface-hover: #27272a;
+  --border: #27272a;
+  --border-subtle: #1f1f23;
+  --text: #fafafa;
+  --muted: #a1a1aa;
+  --accent: #818cf8;
+  --accent-dim: rgba(129, 140, 248, 0.1);
+
+  --status-parcheggiata: #71717a;
+  --status-parcheggiata-bg: rgba(113, 113, 122, 0.12);
+  --status-in-sviluppo: #fbbf24;
+  --status-in-sviluppo-bg: rgba(251, 191, 36, 0.12);
+  --status-completata: #34d399;
+  --status-completata-bg: rgba(52, 211, 153, 0.12);
+  --status-abbandonata: #f87171;
+  --status-abbandonata-bg: rgba(248, 113, 113, 0.12);
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --radius: 10px;
+  --radius-sm: 6px;
+}
+
+html {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+code, pre {
+  font-family: var(--font-mono);
+}
+
+::selection {
+  background: var(--accent-dim);
+  color: var(--accent);
+}

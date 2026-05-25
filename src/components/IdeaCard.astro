@@ -1,0 +1,149 @@
+---
+interface Props {
+  id: string;
+  titolo: string;
+  descrizione: string;
+  stato: 'parcheggiata' | 'in-sviluppo' | 'completata' | 'abbandonata';
+  categoria: string;
+  tag: string[];
+  data: Date;
+}
+
+const { id, titolo, descrizione, stato, categoria, tag, data } = Astro.props;
+
+const statoLabel: Record<string, string> = {
+  'parcheggiata': 'parcheggiata',
+  'in-sviluppo': 'in sviluppo',
+  'completata': 'completata',
+  'abbandonata': 'abbandonata',
+};
+
+const dataFmt = data.toLocaleDateString('it-IT', { month: 'short', year: 'numeric' });
+---
+
+<a href={`/idee/${id}`} class="card">
+  <div class="card-top">
+    <span class="categoria">{categoria}</span>
+    <span class={`stato stato--${stato}`}>{statoLabel[stato]}</span>
+  </div>
+
+  <h3 class="titolo">{titolo}</h3>
+  <p class="descrizione">{descrizione}</p>
+
+  <div class="card-bottom">
+    <div class="tags">
+      {tag.slice(0, 3).map(t => <span class="tag">#{t}</span>)}
+    </div>
+    <span class="data">{dataFmt}</span>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.4rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+    height: 100%;
+  }
+
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .categoria {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .stato {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .stato--parcheggiata {
+    color: #a1a1aa;
+    background: rgba(113,113,122,0.15);
+  }
+
+  .stato--in-sviluppo {
+    color: #fbbf24;
+    background: rgba(251,191,36,0.15);
+  }
+
+  .stato--completata {
+    color: #34d399;
+    background: rgba(52,211,153,0.15);
+  }
+
+  .stato--abbandonata {
+    color: #f87171;
+    background: rgba(248,113,113,0.15);
+  }
+
+  .titolo {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .descrizione {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.55;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: auto;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    font-family: var(--font-mono, monospace);
+    color: var(--accent);
+    opacity: 0.75;
+  }
+
+  .data {
+    font-size: 0.7rem;
+    color: var(--muted);
+    white-space: nowrap;
+    opacity: 0.6;
+  }
+</style>
