@@ -30,8 +30,16 @@ Poi ho seguito per intero il playbook di estrazione — dodici step, non solo i 
 
 **Farla convivere con ponytail**, l'altra skill attiva nella stessa sessione — quella che spinge nella direzione opposta, "il codice più lazy che funziona". Le due sembrano in tensione (una spinge a strutturare, l'altra a cancellare) ma si tengono a vicenda: ponytail impedisce a questa skill di produrre over-engineering applicato senza giudizio, questa skill impedisce a "YAGNI" di diventare una scusa per non testare o non isolare un fix. Le ho pubblicate insieme, con una sezione dedicata nel README che spiega come si completano.
 
+## Da skill a plugin
+
+Pubblicarla come repo GitHub con un `SKILL.md` da clonare a mano andava bene per me, ma aveva un limite concreto: chi la installa resta fisso al commit clonato, senza aggiornamenti. Nel frattempo ho anche installato la stessa skill su Jarvis (il mio agent personale, non collegato a Claude Code) senza cambiare un carattere — il formato `SKILL.md` segue lo standard aperto agentskills.io, quindi ciò che scrivi per un host funziona sull'altro. Prova diretta che valeva la pena investire nel formato giusto fin dall'inizio invece che in qualcosa di specifico per un solo prodotto.
+
+Per risolvere il problema dell'aggiornamento, l'ho impacchettata come plugin Claude Code vero (marketplace + manifest, installabile con `/plugin install` invece del clone manuale) — stessa struttura che usa ponytail, ridotta all'essenziale: niente comandi, niente server MCP, solo la skill.
+
+Poi mi sono chiesto se valesse la pena renderla "always-on" come ponytail, che si attiva a ogni sessione tramite un hook. Risposta: solo in parte. Ho aggiunto un hook che parte all'avvio della sessione, controlla se la cartella di lavoro somiglia a un vero progetto software (un repository git, o un file di manifest come `package.json`/`pom.xml`/`go.mod`, cercato anche un paio di livelli sotto per beccare i monorepo con `backend/`+`frontend/` separati), e solo se sì mostra la checklist operativa — letta al volo dal file della skill, non duplicata, per non disallinearsi mai. Il criterio resta volutamente grezzo: un hook di avvio sessione parte prima ancora che tu scriva il primo messaggio, quindi non può indovinare se il task servirà davvero i principi — quello lo lascio decidere al modello, com'era già.
+
 ## Cosa rimane da capire
 
-Il campione di validazione è ancora piccolo — un solo progetto, due linguaggi, una manciata di file. Non l'ho ancora provata su un caso vero di god-class in produzione (quello per cui il playbook esiste davvero), né fuori dall'ecosistema Java/TypeScript. È "provata una volta", non "provata".
+Il campione di validazione è ancora piccolo — un solo progetto, due linguaggi, una manciata di file. Non l'ho ancora provata su un caso vero di god-class in produzione (quello per cui il playbook esiste davvero), né fuori dall'ecosistema Java/TypeScript. È "provata una volta", non "provata". La logica dell'hook l'ho testata isolata (tre scenari: repo con git alla radice, monorepo senza git ma con marker annidati, cartella senza nulla) ma non dentro una sessione Claude Code reale — non avevo modo di avviarne una da qui.
 
 Codice e documentazione (in inglese) su [GitHub](https://github.com/gufettonerd-arch/software-design-principles). Va installata insieme a [ponytail](https://github.com/DietrichGebert/ponytail), non al suo posto.
