@@ -62,11 +62,26 @@ Non è scienza. È immaginazione ispirata dalla scienza, che è una cosa diversa
 
 I buchi neri sono i luoghi dove temperatura, entropia, tempo e geometria non si possono più separare. Non sono oggetti "sotto lo zero assoluto", ma oggetti in cui lo zero assoluto (estremale) è un limite irraggiungibile e la termodinamica diventa geometria.
 
-## Cosa rimane da capire
+## Cosa rimane da capire (stato dopo le verifiche)
 
-- Se la temperatura formale negativa dell'orizzonte interno ha un significato fisico.
-- Se il tempo termico è davvero la chiave del legame tra temperatura e geometria.
-- Se un'inomogeneità di tempo e espansione (timescape) è reale o un artefatto.
+Nessuna delle tre domande è chiudibile con certezza: sono problemi aperti. Per ciascuna ho ristretto la questione e indicato il criterio che la deciderebbe.
+
+**1. La temperatura formale negativa dell'orizzonte interno ha un significato fisico?**
+- Calcolo: T₋ = −κ₋/2π segue dal primo principio standard e torna numericamente. Sul piano formale è coerente.
+- Fisica: l'orizzonte interno (di Cauchy) di un buco nero carico o rotante è instabile alle perturbazioni. Il meccanismo è l'inflazione di massa (Poisson-Israel); l'instabilità lineare è dimostrata rigorosamente per Reissner-Nordström (Luk, Oh, Shlapentokh-Rothman), l'inflazione di massa completa solo sotto assunzioni. Con costante cosmologica positiva ci sono indizi che la censura cosmica forte possa fallire.
+- Conclusione provvisoria: nei buchi neri reali l'orizzonte interno probabilmente non è una struttura stabile, quindi T₋ resta una quantità formale, senza misura possibile. Criterio che deciderebbe: una soluzione realistica (rotante, con perturbazioni) in cui l'orizzonte interno sopravviva.
+
+**2. Il tempo termico è la chiave del legame tra temperatura e geometria?**
+- Caso chiuso, in equilibrio: per il cuneo di Rindler il teorema di Bisognano-Wichmann identifica il flusso modulare del vuoto con il boost di Lorentz, e confrontando i parametri (aτ = 2πt) si ottiene l'effetto Unruh T = a/2π. Sewell lo estende all'orizzonte di un buco nero (Hawking-Unruh).
+- Tolman come conseguenza (mia derivazione da questo schema, non letta in un paper): se il parametro modulare s è globale e il tempo proprio vale dτ = √g₀₀ dt, la temperatura locale (rapporto tra flusso geometrico e flusso modulare) scala come 1/√g₀₀, cioè la legge di Tolman.
+- Parte aperta: stati generici fuori equilibrio, covarianza generale, e il rapporto con il tempo proprio. Critiche (Swanson) e ridimensionamento da parte di Rovelli. Criterio che deciderebbe: una costruzione che funzioni per stati non stazionari senza scegliere a mano il flusso.
+- Conclusione provvisoria: nei casi di orizzonte l'ipotesi è solida e riproduce risultati noti; come spiegazione generale del tempo è ancora ipotesi.
+
+**3. Il timescape (inomogeneità di tempo ed espansione) è reale o un artefatto?**
+- Evidenze a favore: Pantheon+ dà ln B > 5 per timescape, ma l'analisi è degli autori del modello.
+- Evidenze contro: una analisi DES indipendente trova che i BAO favoriscono nettamente ΛCDM; il test con il CMB è limitato da incertezze sistematiche dell'8-13% sui parametri di materia (backreaction non ancora applicata al plasma primordiale).
+- Il test decisivo è già pianificato: BAO di Euclid più circa 1000 supernovae Ia indipendenti distinguono timescape da FLRW (test di Clarkson, Bassett e Lu).
+- Conclusione provvisoria: non confermato né escluso; oggi pesa più la tensione con i BAO che le supernovae a favore. Nota: la correzione sopra sul potenziale gravitazionale (10⁵ anni) vale per effetti di campo debole, non per il meccanismo del timescape.
 
 ## Verifiche e matematica
 
@@ -115,4 +130,4 @@ Calcoli rifatti numericamente (G, c, ħ, k_B da CODATA; Λ da H₀ = 67,4 km/s/M
 - Record di freddo: 38 pK (Bremen, torre di caduta ZARM, PRL), temperatura effettiva e per ~2 s. Il valore precedente riportato da un articolo ("36 milionesimi di kelvin") sembra sbagliato e non l'ho usato.
 - Accoppiamento cosmologico dei buchi neri (Farrah et al. 2023): contestato su più fronti. Mistele (arXiv:2304.09817) parla di un errore sul principio di minima azione (solo abstract letto, argomento non verificato); Avelino contesta Birkhoff e la conservazione della quantità di moto (da riassunto, non letto). Nessuna conferma indipendente trovata.
 - Universo in un buco nero (Poplawski, Einstein-Cartan): articoli quasi tutti dell'autore, modello approssimato, nessuna analisi indipendente trovata.
-- Timescape: i risultati favorevoli vengono dagli autori (Lane et al., MNRAS 2024; Letters 2025). Nessuna replica indipendente trovata. La cifra "orologi più lenti del 35%" non l'ho verificata.
+- Timescape: i risultati favorevoli vengono dagli autori (Lane et al., MNRAS 2024; Letters 2025). Una analisi DES indipendente riproduce la preferenza per le supernovae ma trova i BAO a favore di ΛCDM (da CosmoVerse White Paper, non dal paper originale). La cifra "35%" della stampa non l'ho trovata; la fonte tecnica parla di una differenza di ritmo tra osservatori di parete e media di volume dell'ordine del 38% al presente (Leith et al. 2008).
