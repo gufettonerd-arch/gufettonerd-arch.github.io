@@ -1,36 +1,40 @@
 ---
-titolo: "Benchmark AI"
-descrizione: "Un gioco a turni stile Pokémon in cui modelli AI si sfidano comandando creature, partendo da informazioni incomplete e scoprendo il mondo turno dopo turno. Un benchmark mascherato da gioco."
+titolo: "Autonomous Agent Arena (AAA)"
+descrizione: "Piattaforma di benchmark dinamico e procedurale per agenti AI: risolvono enigmi in arena, il vincitore diventa Architect e genera il livello successivo. Nessun livello scritto da umani, la difficoltà evolve da sola."
 stato: "parcheggiata"
-categoria: "AI / Game"
-data: 2025-01-01
-tag: ["AI", "benchmark", "game", "LLM"]
+categoria: "AI / Platform"
+data: 2026-09-18
+tag: ["AI", "benchmark", "multi-agent", "platform", "MoA"]
 commenti: true
 ---
 
 ## Il meccanismo
 
-Due AI si sfidano in un combattimento a turni stile Pokémon. Ognuna controlla un team di creature assegnato casualmente all'inizio della partita. Non conoscono il team avversario. Non possono accedere al web. Non possono sfruttare le loro conoscenze pregresse sul metagame — perché le creature, le abilità e le regole sono inventate ad hoc.
+Un server pubblica un livello (enigma/problema) con seed unico per squadra. Gli agenti AI in gara risolvono in parallelo, con protocollo commit-reveal (hash della soluzione prima, reveal in chiaro alla chiusura finestra, anti front-running/plagio). Il server valuta in sandbox con una funzione obiettivo pesata (correttezza / efficienza computazionale / tempo di risposta). Chi vince diventa **Architect** e ha una finestra di 1-2 ore per generare il livello successivo — se non ci riesce, subentra un fallback procedurale.
 
-Ogni AI parte da uno stato di ignoranza controllata: sa solo cosa ha in squadra. Tutto il resto lo scopre giocando.
+Nessun livello è scritto da un umano: la curva di difficoltà emerge dal livello di bravura degli agenti stessi. È un benchmark che si costruisce da solo, invece di essere statico come MMLU/HumanEval.
 
-## Il cuore dell'idea: informazione incrementale
+## Perché è interessante
 
-Ad ogni turno, ogni AI riceve un JSON che descrive quello che è appena successo: le azioni eseguite, i risultati, gli effetti scatenati, le informazioni sull'avversario che si sono rese visibili. Il contesto cresce turno dopo turno — ogni AI costruisce la propria mappa del mondo a partire da zero, aggiornandola con quello che osserva.
+- Benchmark dinamico invece che statico: non si "esaurisce" o diventa memorizzabile come i dataset fissi.
+- Pressione naturale verso l'efficienza (non solo verso la potenza bruta) — dovrebbe favorire architetture a sciame di modelli piccoli specializzati (Mixture of Agents) invece del solito LLM enorme e generico.
+- "Code is Law": il server impone solo vincoli logici/di sicurezza, dinamiche come coalizioni, spionaggio, subappalto tra agenti non sono censurate ma parte della simulazione — utile scientificamente per osservare comportamenti emergenti.
+- Possibile doppio binario Wild-West (nessun controllo, API cloud libere) vs Open-Science (telemetria + proof-of-inference in cambio di research credits) per separare gara "libera" da dati puliti da ricerca.
 
-Questo crea una sfida di ragionamento sotto incertezza: devo decidere cosa fare sapendo solo quello che ho visto finora. Se l'avversario ha usato un'abilità che non conoscevo, adesso la conosco. Se una mia creatura ha una debolezza che non avevo considerato, lo scopro al momento sbagliato.
+## Criticità note (dalla prima revisione)
 
-## Perché è un benchmark interessante
+Ho già passato l'idea a un'analisi tecnica e sono emersi diversi buchi da non ignorare quando si passa all'implementazione:
 
-I benchmark AI classici testano conoscenza — quanto sai, quanto sei preciso. Questo testa qualcosa di diverso:
+- **La funzione obiettivo (0.50 correttezza / 0.30 efficienza / 0.20 tempo) è arbitraria** — va definita in modo operativo (efficienza = costo token/compute, non wall-clock duplicato) e calibrata con A/B testing reale, non fissata a tavolino.
+- **L'Architect ha un incentivo strutturale a costruirsi livelli su misura.** Serve una regola: l'Architect non compete sul livello che ha generato, e un solver indipendente (non il suo) deve confermare la solvibilità prima della pubblicazione.
+- **Il "Genesis Engine" generatore procedurale libero è di fatto un progetto di ricerca a sé** (generare livelli garantiti risolvibili e a difficoltà calibrata). Per un MVP realistico va ridotto a 3-5 famiglie di livelli fisse e parametrizzate, non un generatore arbitrario.
+- **Sandboxing: serve isolamento hostile-code-grade (gVisor) fin dal Day 1**, non rimandato a una fase "Enterprise" — il design stesso ("Code is Law", agenti ostili per definizione) assume codice non fidato eseguito automaticamente.
+- **La stima di effort originale (75-100 ore da solo) copriva in realtà l'intero sistema con coalizioni, dual-leaderboard, lega Human vs AI** — troppo ambizioso per un MVP. Meglio tagliare a: ciclo base (livello → soluzione → Architect → livello successivo, no coalizioni, no lega umani, no wild-west) stimato ~110 ore, e rimandare il resto a una Fase 2 dopo che il ciclo base gira stabile su 20-30 livelli senza intervento manuale.
 
-- **Gestione del contesto** — l'AI deve tenere traccia di uno stato che cresce e cambia
-- **Ragionamento sotto incertezza** — decidere con informazioni parziali è diverso da decidere sapendo tutto
-- **Adattamento** — reagire a scoperte inattese in tempo reale
-- **Zero vantaggio da training** — le regole sono nuove per tutti, vince chi ragiona meglio non chi ha memorizzato di più
+## Possibile percorso di validazione
 
-Il formato gioco rende tutto questo misurabile e osservabile in modo naturale.
+Idea di partnership tripartita: io come lead tech, un'azienda IT (crediti d'imposta R&D, project work per l'academy interna) e un dipartimento universitario (tesi magistrali/dottorato, accesso a bandi regionali). Ma ha senso proporla solo dopo avere una demo del ciclo base funzionante — una piattaforma che gira davvero pesa più di qualsiasi documento di specifica.
 
-## Cosa rimane da capire
+## Dettagli completi
 
-Il design delle creature e delle regole è il lavoro più delicato — devono essere abbastanza semplici da essere comprensibili in pochi turni, abbastanza complesse da richiedere strategia vera. E bisogna capire come gestire i limiti di contesto dei modelli su partite lunghe.
+Documento esteso con architettura software (Java 21 + Spring Boot 3 + Angular 17, stack sandbox, workflow di sviluppo notturno con LLM locale) e revisione punto per punto: vedi `nuovo 2.md` su Desktop.
