@@ -67,3 +67,52 @@ I buchi neri sono i luoghi dove temperatura, entropia, tempo e geometria non si 
 - Se la temperatura formale negativa dell'orizzonte interno ha un significato fisico.
 - Se il tempo termico è davvero la chiave del legame tra temperatura e geometria.
 - Se un'inomogeneità di tempo e espansione (timescape) è reale o un artefatto.
+
+## Verifiche e matematica
+
+Calcoli rifatti numericamente (G, c, ħ, k_B da CODATA; Λ da H₀ = 67,4 km/s/Mpc e Ω_Λ = 0,685).
+
+**Buco nero di Schwarzschild**
+- T_H = ħc³/(8πG·M·k_B): 6,17×10⁻⁸ K per 1 M☉; 1,5×10⁻¹⁴ K per Sgr A* (4×10⁶ M☉).
+- T_H uguaglia la temperatura del CMB (2,7255 K) a M ≈ 4,5×10²² kg (2,3×10⁻⁸ M☉). Sotto questa massa un buco nero evapora; sopra, assorbe più di quanto emette.
+- S = 4πGM²k_B/(ħc), quindi ∂S/∂E = 8πGM k_B/(ħc³) > 0 per ogni M. T non può cambiare segno.
+- Calore specifico C = −8πGM²k_B/(ħc) < 0: per 1 M☉, C/k_B ≈ −2×10⁷⁷. È negativo, e lo è la sola cosa che rende "strana" la termodinamica, non la temperatura.
+- Tempo di evaporazione 5120πG²M³/(ħc⁴): ≈ 2×10⁶⁷ anni per 1 M☉.
+
+**Buco nero carico (Reissner-Nordström), unità G = c = ħ = 1**
+- Orizzonti r± con M = (r₊ + r₋)/2 e Q² = r₊r₋. Gravità superficiali κ₊ = (r₊ − r₋)/(2r₊²) e κ₋ = (r₊ − r₋)/(2r₋²).
+- Primo principio all'orizzonte esterno: dM = T₊dS₊ + Φ₊dQ, con T₊ = κ₊/2π e S₊ = πr₊².
+- All'orizzonte interno vale dM = T₋dS₋ + Φ₋dQ con T₋ = −κ₋/2π < 0. Il segno meno viene dall'algebra, non è imposto: verificato a mano e con differenze finite (errore < 10⁻⁹).
+- Per r₊ = 2, r₋ = 1: T₊ = 0,0398 e T₋ = −0,0796.
+- Letteratura: due letture rivali. Primo principio standard e T₋ < 0, oppure T₋ in valore assoluto con primo principio modificato. Nessun consenso.
+
+**Tempo e temperatura apparente (Tolman)**
+- Redshift gravitazionale sulla Terra: gh/c² = 1,09×10⁻¹⁶ per metro, 1,09×10⁻¹⁹ per millimetro. È l'ordine di grandezza misurato da JILA (Bothwell et al., Nature 2022).
+- Vicino a un orizzonte, dτ/dt = √(1 − r_s/r): 0,71 a 2r_s, 0,10 a 1,01r_s, 0,03 a 1,001r_s. La temperatura apparente a distanza scala con lo stesso fattore.
+
+**Correzione a una mia stima precedente**
+- Con il solo potenziale gravitazionale, Φ/c² ≈ 10⁻⁵ in un ammasso (≈ 10⁻⁶,⁴ in una galassia). Su 13,8 miliardi di anni dà una differenza di ≈ 1,5×10⁵ anni (≈ 6×10³ per una galassia), non milioni.
+- Gli effetti grandi del timescape non vengono dal potenziale ma dalla differenza di curvatura spaziale media tra vuoti e regioni dense. È un meccanismo diverso, e non una conseguenza di Φ.
+
+**Espansione e collasso**
+- Raggio massimo di turnaround R = (3GM/Λc²)^(1/3): Sgr A* 0,018 Mpc; Via Lattea (1,5×10¹² M☉) 1,3 Mpc; Coma (10¹⁵ M☉) 11 Mpc.
+- Collasso sferico in universo Einstein-de Sitter: contrasto lineare 1,06 al turnaround, 1,686 al collasso. Densità non lineare al turnaround 9π²/16 ≈ 5,55 volte la media. Sovradensità viriale 18π² ≈ 178.
+
+**De Sitter**
+- H_Λ = H₀√Ω_Λ. Temperatura di Gibbons-Hawking T = ħH_Λ/(2πk_B) ≈ 2×10⁻³⁰ K.
+- Entropia dell'orizzonte S = πc⁵/(ħGH_Λ²) ≈ 3×10¹²² k_B: è finita, quindi lo spazio degli stati di una patch statica potrebbe avere dimensione e^S.
+- Temperatura negativa per de Sitter: proposta nel 2018 da Jacobson e Visser (diamanti causali, arXiv:1812.01596) e, in forma diversa, da Cvetič, Gibbons, Lü e Pope (orizzonte cosmologico con Λ > 0, arXiv:1806.11134). Nasce dal segno meno del primo principio: aggiungere energia di Killing riduce l'entropia dell'orizzonte.
+- Nel 2022 Banihashemi, Jacobson, Svesko e Visser (arXiv:2208.11706) risolvono il segno meno senza T negativa: con un confine finito, l'energia interna è quella di Brown-York e non l'energia di Killing, e il primo principio torna coerente. Stato: la T negativa non è più necessaria, ma non è una confutazione.
+- Hilbert space finito: Banihashemi e Jacobson (arXiv:2204.05324) mostrano che la funzione di partizione di Gibbons-Hawking sulla 4-sfera conta la dimensione dello spazio di Hilbert dentro l'orizzonte. Sostiene l'ipotesi, non la dimostra.
+
+**Sistema a due livelli (T negativa dimostrata)**
+- N = 1000 spin: per n↑ < N/2 (energia alta) 1/T < 0, per n↑ > N/2 1/T > 0. Esempio: n↑ = 300 → 1/T = −0,42; n↑ = 700 → +0,42 (unità μB = k_B = 1).
+
+**Controllo sulle altre fonti**
+- Curva di Page e isole (abstract letti): Penington (arXiv:1905.08255) trova che a tempo di Page la superficie di Ryu-Takayanagi quantistica passa appena dentro l'orizzonte e ricava la curva di Page e il criterio di Hayden-Preskill, senza firewall. Almheiri, Mahajan, Maldacena e Zhao (1908.10996) trovano che l'entropia della radiazione segue la curva di Page e propongono la regola delle "isole". Penington-Shenker-Stanford-Yang (1911.11977): le isole derivano da wormhole di replica. Tutti in modelli olografici (AdS/CFT), non nel nostro universo.
+- Tempo termico (Connes-Rovelli, gr-qc/9406019): il flusso del tempo è dato dal gruppo di automorfismi di Tomita-Takesaki dello stato termico, con legame esplicito a Unruh e Hawking. L'abstract non cita Tolman-Ehrenfest né il tempo proprio. Critiche nella letteratura filosofica, e Rovelli ne ha ridimensionato la forma forte.
+- Buco nero analogo con spettro termico: confermato (Muñoz de Nova et al., arXiv:1809.00913, Nature 569, 2019): spettro termico alla temperatura di Hawking implicata dalla gravità superficiale analoga, con soli modi partner a energia negativa dentro l'orizzonte. L'abstract non riporta il valore numerico. Versione precedente Nature Physics 2016.
+- Record di freddo: 38 pK (Bremen, torre di caduta ZARM, PRL), temperatura effettiva e per ~2 s. Il valore precedente riportato da un articolo ("36 milionesimi di kelvin") sembra sbagliato e non l'ho usato.
+- Accoppiamento cosmologico dei buchi neri (Farrah et al. 2023): contestato su più fronti. Mistele (arXiv:2304.09817) parla di un errore sul principio di minima azione (solo abstract letto, argomento non verificato); Avelino contesta Birkhoff e la conservazione della quantità di moto (da riassunto, non letto). Nessuna conferma indipendente trovata.
+- Universo in un buco nero (Poplawski, Einstein-Cartan): articoli quasi tutti dell'autore, modello approssimato, nessuna analisi indipendente trovata.
+- Timescape: i risultati favorevoli vengono dagli autori (Lane et al., MNRAS 2024; Letters 2025). Nessuna replica indipendente trovata. La cifra "orologi più lenti del 35%" non l'ho verificata.
