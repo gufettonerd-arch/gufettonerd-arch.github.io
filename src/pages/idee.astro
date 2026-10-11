@@ -57,13 +57,6 @@ const conteggio = {
       />
     ))}
   </div>
-
-  <div class="add-hint">
-    <span class="add-hint-icon">+</span>
-    <span>
-      Per aggiungere un'idea, crea un file <code>.md</code> in <code>src/content/ideas/</code>
-    </span>
-  </div>
 </Layout>
 
 <style>
@@ -124,30 +117,5 @@ const conteggio = {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1rem;
     margin-bottom: 3rem;
-  }
-
-  .add-hint {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 1.25rem;
-    border: 1px dashed var(--border);
-    border-radius: 10px;
-    font-size: 0.82rem;
-    color: var(--muted);
-  }
-
-  .add-hint-icon {
-    font-size: 1.2rem;
-    color: var(--muted);
-    opacity: 0.5;
-    flex-shrink: 0;
-  }
-
-  .add-hint code {
-    font-family: var(--font-mono, monospace);
-    font-size: 0.78rem;
-    color: var(--accent);
-    opacity: 0.8;
   }
 </style>

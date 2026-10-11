@@ -34,7 +34,3 @@ Ho già passato l'idea a un'analisi tecnica e sono emersi diversi buchi da non i
 ## Possibile percorso di validazione
 
 Idea di partnership tripartita: io come lead tech, un'azienda IT (crediti d'imposta R&D, project work per l'academy interna) e un dipartimento universitario (tesi magistrali/dottorato, accesso a bandi regionali). Ma ha senso proporla solo dopo avere una demo del ciclo base funzionante — una piattaforma che gira davvero pesa più di qualsiasi documento di specifica.
-
-## Dettagli completi
-
-Documento esteso con architettura software (Java 21 + Spring Boot 3 + Angular 17, stack sandbox, workflow di sviluppo notturno con LLM locale) e revisione punto per punto: vedi `nuovo 2.md` su Desktop.
